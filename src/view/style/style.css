@@ -1,0 +1,69 @@
+.cur{
+    cursor: pointer;
+    margin: 0 auto;
+    float: none; 
+    margin-bottom: 10px; 
+}
+.cur:hover{
+  
+}
+.productimg{
+    width:100%;
+}
+.MDBcard{
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+.testimonial-card .card-up {
+    height: 120px;
+    overflow: hidden;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+  }
+  .testimonial-card .avatar {
+    width: 110px;
+    margin-top: -60px;
+    overflow: hidden;
+    border: 3px solid #fff;
+    border-radius: 50%;
+  }
+  .about-section {
+    padding: 50px;
+    text-align: center;
+    color: black;
+  }
+  .about{
+    font-size: 30px;
+    padding: 20px;
+  }
+  .text-reset{
+    text-decoration: none;
+  }
+  .text-reset:hover{
+    text-decoration: underline;
+  }
+  .testimonial-card{
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+  }
+  .testimonial-card:hover{
+    top: -10px;
+  }
+.padding{
+    padding:10px 0 0 0;
+  }
+  .btn{
+    margin-right: 50px;
+  }
+  .MDBcard{
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+  }
+  .MDBcard:hover{
+    top: -10px;
+  }
