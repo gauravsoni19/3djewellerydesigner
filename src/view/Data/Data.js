@@ -1,4 +1,4 @@
-export var menubar = ["About", "Service", "Contact"]
+export var menubar = ["About", "Service", "Contact",]
 export var banner = [require('../img/slider (1).jpg'), require('../img/slider (2) (1).jpg'), require('../img/slider (3).jpg'), require('../img/slider (4).jpg')];
 export var testimonial =[
   {

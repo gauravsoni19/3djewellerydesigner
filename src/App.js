@@ -9,7 +9,7 @@ import Login from "./view/screen/Login";
 import Addtocart from "./view/screen/Addtocart";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Nav, Navbar, Button, Form } from "react-bootstrap";
+import { Container, Row, Col, Nav, Navbar, Button} from "react-bootstrap";
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 import { menubar } from "./view/Data/Data";
 import './view/style/style.css'
@@ -20,6 +20,7 @@ import {
     faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Payment from "./view/screen/Payment";
 console.log(menubar);
 function App() {
     const [user, setUser] = useState(localStorage.getItem('user'));
@@ -59,7 +60,7 @@ function App() {
                                             }
 
                                         </Nav>
-                                        <Form className="d-flex">
+                                        {/* <Form className="d-flex">
                                             <Form.Control
                                                 type="search"
                                                 placeholder="Search"
@@ -67,9 +68,9 @@ function App() {
                                                 aria-label="Search"
                                             />
                                             <Button variant="outline-success">Search</Button>
-                                        </Form>
+                                        </Form> */}
                                             {
-                                                user?< Button onClick={Logout}>Logout</Button>:null
+                                                user?<Button onClick={Logout} variant="outline-primary">Logout</Button>:null
                                             }
                                         
                                     </Navbar.Collapse>
@@ -85,6 +86,8 @@ function App() {
                     <Route path="/Contact" element={<Contact />} />
                     <Route path="/Service" element={<Service />} />
                     <Route path="/Addtocart" element={<Addtocart />} />
+                    <Route path="/Payment" element={<Payment />} />
+                    
                     {
                         user ? null : <>
                             <Route path="/Register" element={<Register />} />

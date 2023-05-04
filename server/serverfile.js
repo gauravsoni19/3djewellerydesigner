@@ -109,7 +109,7 @@ app.post('/addtocart',function(req,res){
  app.post('/register',function(req,res){
   
   
-   let result=fs.appendFileSync('./data/userdata.json', JSON.stringify(req.body),"utf8")
+    let result=fs.appendFileSync('./data/userdata.json', JSON.stringify(req.body),"utf8")
     fs.appendFileSync('./data/userdata.json', "\n","utf8")
     let resultdata=""
     if(!result){

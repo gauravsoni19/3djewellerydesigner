@@ -1,75 +1,111 @@
-import React from "react";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCol,
-  MDBContainer,
-  MDBInput,
-  MDBRow,
-} from "mdb-react-ui-kit";
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function Payment() {
-    const loc = useLocation()
-    const[product,setProduct] = useState(loc.state)
-    console.log(product);
+const Payment = () => {
+  const location = useLocation();
+  const selectedProducts = location.state?.selectedProducts ?? [];
+  const [paymentInfo, setPaymentInfo] = useState({
+    cardNumber: '',
+    expirationDate: '',
+    cvv: '',
+    name: '',
+  });
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const totalPrice = searchParams.get('totalPrice');
+    setTotalPrice(totalPrice || 0);
+  }, [location.search]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setPaymentInfo({ ...paymentInfo, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Here you could handle submitting the payment information to a server
+    // and show a confirmation message to the user
+    window.alert('Payment successful! Thank you for your purchase.');
+  };
+  
+
   return (
-    <MDBContainer fluid className="py-5" style={{ backgroundColor: "#f9c9aa" }}>
-      <MDBRow className="d-flex justify-content-center">
-        <MDBCol md="9" lg="7" xl="5">
-          <MDBCard>
-            <MDBCardImage
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-forms/img1.webp"
-              position="top"
-              alt="..."
-            />
-            <MDBCardBody>
-              <MDBCardTitle className="d-flex justify-content-between mb-0">
-                <p className="text-muted mb-0">Retro Chair</p>
-                <p className="mb-0">$760</p>
-              </MDBCardTitle>
-            </MDBCardBody>
-            <div className="rounded-bottom" style={{ backgroundColor: "#eee" }}>
-              <MDBCardBody>
-                {" "}
-                <p className="mb-4">Your payment details</p>
-                <MDBInput
-                  label="Card Number"
-                  id="form1"
-                  type="text"
-                  placeholder="1234 5678 1234 5678"
-                  wrapperClass="mb-3"
-                />
-                <MDBRow className="mb-3">
-                  <MDBCol size="6">
-                    <MDBInput
-                      label="Expire"
-                      id="form2"
-                      type="password"
-                      placeholder="MM/YYYY"
-                      wrapperClass="mb-3"
-                    />
-                  </MDBCol>
-                  <MDBCol size="6">
-                    <MDBInput
-                      label="CVV"
-                      id="form4"
-                      type="password"
-                      placeholder="CVV"
-                      wrapperClass="mb-3"
-                    />
-                  </MDBCol>
-                </MDBRow>
-                <MDBBtn block color="info">
-                  Order now
-                </MDBBtn>
-              </MDBCardBody>
+    <div className="container my-5">
+      <h1 className="mb-3">Payment</h1>
+      <div className="card">
+        <div className="card-header">
+          <h5>Order Summary</h5>
+        </div>
+        <div className="card-body">
+          <ul className="list-group mb-3">
+            {selectedProducts.map((product) => (
+              <li className="list-group-item d-flex justify-content-between align-items-center" key={product.id}>
+                {product.name}
+                <span className="badge badge-primary badge-pill">${product.price}</span>
+              </li>
+            ))}
+            <li className="list-group-item d-flex justify-content-between align-items-center">
+              Total Price:
+              <span id="total-price">${totalPrice ?? 0}</span>
+            </li>
+          </ul>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="cardNumber">Card Number</label>
+              <input
+                type="text"
+                className="form-control"
+                id="cardNumber"
+                name="cardNumber"
+                value={paymentInfo.cardNumber}
+                onChange={handleInputChange}
+              />
             </div>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+            <div className="form-group">
+              <label htmlFor="expirationDate">Expiration Date</label>
+              <input
+                type="text"
+                className="form-control"
+                id="expirationDate"
+                name="expirationDate"
+                value={paymentInfo.expirationDate}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="cvv">CVV</label>
+              <input
+                type="text"
+                className="form-control"
+                id="cvv"
+                name="cvv"
+                value={paymentInfo.cvv}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="name">Name on Card</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                value={paymentInfo.name}
+                onChange={handleInputChange}
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Submit Payment
+            </button>
+            <Link to="/Addtocart" className="btn btn-secondary ml-2">
+              Back to Products
+            </Link>
+            </form>
+        </div>
+      </div>
+    </div>
   );
-}
+};
+export default Payment;

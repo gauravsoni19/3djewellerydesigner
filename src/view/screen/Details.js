@@ -2,13 +2,16 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Container,Row,Col } from "react-bootstrap";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 function Details() {
+    const nav = useNavigate()
     const loc = useLocation()
     const[product,setProduct] = useState(loc.state)
     console.log(product);
     async function productaddtocart(product){
         let params = {
-            data:product
+            ...product
         }
 
         let res = await axios.post("addtocart",params)
@@ -18,12 +21,14 @@ function Details() {
         if(success)
         {
             alert(message)
+            nav("/Addtocart")
         }
         else
         {
             alert(message)
         }
     }
+    
     return (
         <Container>
             <Row>
@@ -43,7 +48,7 @@ function Details() {
                     </div>
                     <br /><br />
                     <button value={product} onClick={()=>productaddtocart(product)} className="btn btn-primary mr-2" >Buy Now</button>
-                    <button value={product} onClick={()=>productaddtocart(product)} className="btn btn-primary mr-2" >Add to Cart</button>
+                    <Button variant="outline-primary" value={product} onClick={()=>productaddtocart(product)}>Add to Cart</Button>
                     <br /><br /><br /><br /><br /><br /><br />
                 </Col>
             </Row>
