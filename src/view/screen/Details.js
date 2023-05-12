@@ -4,6 +4,7 @@ import { Container,Row,Col } from "react-bootstrap";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Details() {
     const nav = useNavigate()
     const loc = useLocation()
@@ -21,7 +22,6 @@ function Details() {
         if(success)
         {
             alert(message)
-            nav("/Addtocart")
         }
         else
         {
@@ -43,12 +43,12 @@ function Details() {
                         <h1 className="padding">{product.name}</h1>
                         <h5 className="padding">Category : {product.category}</h5>
                         <h5 className="padding">Metal : {product.description}</h5>
-                        <h2 className="text-danger padding">{product.price}</h2>
-                        <h6 className="padding"><del>{product.mrp}</del></h6>
+                        <span className="text-danger padding price">₹{product.price}</span><span className="off" >{product.off}</span>
+                        <h6 className="padding"><del>₹{product.mrp}</del></h6>
                     </div>
                     <br /><br />
-                    <button value={product} onClick={()=>productaddtocart(product)} className="btn btn-primary mr-2" >Buy Now</button>
-                    <Button variant="outline-primary" value={product} onClick={()=>productaddtocart(product)}>Add to Cart</Button>
+                    <Link className="buynow" to="/Payment"> <Button>Buy Now</Button></Link>
+                    <Button variant="outline-primary" value={product} onClick={() => productaddtocart(product)}>Add to Cart</Button>
                     <br /><br /><br /><br /><br /><br /><br />
                 </Col>
             </Row>
@@ -56,40 +56,3 @@ function Details() {
     );
 }
 export default Details;
-// import {useLocation} from 'react-router-dom'
-// import {useState} from 'react'
-// import { Row ,Col} from 'react-bootstrap';
-// function Details(){
-//     const loc =useLocation()
-// const[products,setProducts] = useState(loc.state)
-// console.log(products);
-//     return(
-//         <>
-//             <Row>
-//                 <Col>
-//                 <div className="container py-5">
-//       <div className="row">
-//         <div className="col-md-6">
-//           <img src={products.image} alt={products.name} className="img-fluid" />
-//         </div>
-//         <div className="col-md-6">
-//           <h3>{products.name}</h3>
-//           <p>Category: {products.category}</p>
-//           <p>Description: {products.description}</p>
-//           <h4 className="text-danger">${products.price}</h4>
-//           <del className="text-muted">${products.mrp}</del>
-//           <br />
-//           <br />
-//           <button className="btn btn-primary mr-2">Buy Now</button>
-//           <button className="btn btn-outline-primary" id='btn1'>Add to Cart</button>
-//         </div>
-//       </div>
-//     </div>
-
-//                   </Col>
-//             </Row>    
-            
-//             </>
-//     )
-// }
-// export  default Details

@@ -31,7 +31,7 @@ function App() {
         alert('Logout')
         localStorage.setItem('user', false)
         setUser(false)
-        localStorage.clear()
+        // localStorage.clear()
     }
     return (
         <>
@@ -42,20 +42,26 @@ function App() {
                         <Col>
                             <Navbar bg="light" expand="lg">
                                 <Container fluid>
-                                    <Navbar.Brand href="/">3D JEWELLERY DESIGNER</Navbar.Brand>
+                                    <Navbar.Brand><Link to="/" className="text-decoration-none text-secondary">3D JEWELLERY DESIGNER</Link></Navbar.Brand>
                                     <Navbar.Toggle aria-controls="navbarScroll" />
                                     <Navbar.Collapse id="navbarScroll">
                                         <Nav className="me-auto my-2 my-lg-0">
-                                            <Nav.Link href="/">Home</Nav.Link>
+                                            <Nav.Link> <Link to="/" className="text-decoration-none text-secondary">Home</Link></Nav.Link>
                                             {
                                                 menubar.map(function (d) {
-                                                    return <Nav.Link href={`/${d}`}>{d}</Nav.Link>;
+                                                    return <Nav.Link> <Link to={`/${d}`} className="text-decoration-none text-secondary">{d}</Link></Nav.Link>;
                                                 })
                                             }
                                             {
+                                                user ? 
+                                                <Nav.Link> <Link to="/Addtocart" className="text-decoration-none text-secondary cart">🛒</Link></Nav.Link>
+                                                : null
+                                            }
+                                             
+                                            {
                                                 user ? null : <>
-                                                    <Nav.Link href="/Register">Register</Nav.Link>
-                                                    <Nav.Link href="/Login">Login</Nav.Link>
+                                                    <Nav.Link> <Link to="/Register" className="text-decoration-none text-secondary">Register</Link></Nav.Link>
+                                                    <Nav.Link>  <Link to="/Login" className="text-decoration-none text-secondary">Login</Link></Nav.Link>
                                                 </>
                                             }
 
@@ -211,7 +217,7 @@ function App() {
 
                             <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
                                 © 2023 Copyright:
-                                <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
+                                <a className='text-reset fw-bold' href='/Z'>
                                     3D JEWELLERY DESIGNER
                                 </a>
                             </div>

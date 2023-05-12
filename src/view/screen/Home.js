@@ -55,7 +55,7 @@ function Home() {
                                     </ListGroup>
                                     <Card.Body>
                                         <Card.Link onClick={() => nav('/details', { state: d })}>Details</Card.Link>
-                                        <Card.Link onClick={() => nav('/Addtocart', {state: d })}>Add to Cart</Card.Link>
+                                        {/* <Card.Link onClick={() => productaddtocart(product)}>Add to Cart</Card.Link> */}
                                     </Card.Body>
                                 </Card>
                             </Col>

@@ -96,10 +96,10 @@ app.post('/addtocart',function(req,res){
     fs.appendFileSync('./data/addtocart.json', "\n","utf8")
     let resultdata=""
     if(!result){
-        resultdata={success:true,message:"data insert successfully"}
+        resultdata={success:true,message:"Product added to cart."}
     }
     else{
-        resultdata={success:false,message:"data not insert successfully"}
+        resultdata={success:false,message:"Oops! Product not added to cart."}
         
     }
     res.send(resultdata)
@@ -169,7 +169,7 @@ app.post('/addtocart',function(req,res){
         }
     })
    
-    res.send(cartitem)
+    res.send(add1)
  })
 app.listen(8080,function(err,data){
     if(err){

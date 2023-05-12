@@ -4,9 +4,6 @@
     float: none; 
     margin-bottom: 10px; 
 }
-.cur:hover{
-  
-}
 .productimg{
     width:100%;
 }
@@ -66,4 +63,24 @@
   }
   .MDBcard:hover{
     top: -10px;
+  }
+  .cart{
+    position:absolute;
+    bottom: 10px;
+    font-size: 25px;
+  }
+  .addtocartshow-text{
+    font-size: 20px;
+  }
+  .price{
+    font-size: 30px;
+    font-weight: bolder;
+  }
+  .off{
+    font-size: 20px;
+    margin-left: 20px;
+    font-weight: bold;
+  }
+  .buynow{
+    text-decoration: none;
   }

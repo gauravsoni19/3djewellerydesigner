@@ -10,15 +10,7 @@ const Payment = () => {
     cvv: '',
     name: '',
   });
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const totalPrice = searchParams.get('totalPrice');
-    setTotalPrice(totalPrice || 0);
-  }, [location.search]);
-
-  const handleInputChange = (event) => {
+  const handleInputChange = (event) => { 
     const { name, value } = event.target;
     setPaymentInfo({ ...paymentInfo, [name]: value });
   };
@@ -39,20 +31,20 @@ const Payment = () => {
           <h5>Order Summary</h5>
         </div>
         <div className="card-body">
-          <ul className="list-group mb-3">
-            {selectedProducts.map((product) => (
-              <li className="list-group-item d-flex justify-content-between align-items-center" key={product.id}>
-                {product.name}
-                <span className="badge badge-primary badge-pill">${product.price}</span>
-              </li>
-            ))}
-            <li className="list-group-item d-flex justify-content-between align-items-center">
-              Total Price:
-              <span id="total-price">${totalPrice ?? 0}</span>
-            </li>
-          </ul>
+          
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+          <div className="form-group">
+              <label htmlFor="cardNumber">Card Holder's Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="cardNumber"
+                name="cardNumber"
+                value={paymentInfo.cardNumber}
+                onChange={handleInputChange}
+              />
+            </div>
+          <div className="form-group">
               <label htmlFor="cardNumber">Card Number</label>
               <input
                 type="text"
@@ -96,6 +88,7 @@ const Payment = () => {
                 onChange={handleInputChange}
               />
             </div>
+            <br />
             <button type="submit" className="btn btn-primary">
               Submit Payment
             </button>

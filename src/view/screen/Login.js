@@ -38,7 +38,7 @@ function Login() {
   }
   return(
 
-    <Container fluid>
+    <Container>
       <Row>
         <Col>
           <Form>
