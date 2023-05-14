@@ -40,6 +40,29 @@ app.post('/upload', (req, res) => {
 })
 
 
+app.post("/removecartitem",function(req,res){
+
+    try { fs.writeFileSync('./data/addtocart.json',"","utf8")
+    } catch (error) {
+            console.log("er");
+            console.log(error);    
+        }
+        let result = fs.appendFileSync('./data/addtocart.json', JSON.stringify(req.body),"utf8")
+            fs.appendFileSync('./data/addtocart.json', "\n","utf8")
+          let resultdata=""
+      if(!result){
+          resultdata={success:true,message:"Product remove to cart."}
+      }
+      else{
+          resultdata={success:false,message:"Oops! Product not remove to cart."}
+          
+      }
+      res.send(resultdata) 
+})
+
+
+
+
 app.post('/jsontocsv',function(req,res){
     const parser = new Parser();
     const csv = parser.parse(data)
@@ -157,8 +180,9 @@ app.post('/addtocart',function(req,res){
         adddata.push(d)
     })
     let add1=[]
+    
     adddata.map(d=>{
-        if(d!=="")
+        if(d!==""&& d!==[])
         add1.push(JSON.parse(d))
     })
    let cartitem=[]
@@ -168,8 +192,9 @@ app.post('/addtocart',function(req,res){
                 cartitem.push(d);
         }
     })
-   
-    res.send(add1)
+   console.log("show end");
+   console.log(add1); 
+   res.send(add1)
  })
 app.listen(8080,function(err,data){
     if(err){

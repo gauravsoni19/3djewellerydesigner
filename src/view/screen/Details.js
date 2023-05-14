@@ -15,13 +15,14 @@ function Details() {
             ...product
         }
 
-        let res = await axios.post("addtocart",params)
+        let res = await axios.post("addtocart",params).catch(e=>alert(e))
         console.log(res.data);
         let {message,success} = res.data
         console.log(success);
         if(success)
         {
             alert(message)
+            nav('/Addtocart')
         }
         else
         {

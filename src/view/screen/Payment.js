@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation ,useNavigate} from 'react-router-dom';
 
 const Payment = () => {
+  const nav = useNavigate()
   const location = useLocation();
   const selectedProducts = location.state?.selectedProducts ?? [];
   const [paymentInfo, setPaymentInfo] = useState({
@@ -15,11 +17,21 @@ const Payment = () => {
     setPaymentInfo({ ...paymentInfo, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     // Here you could handle submitting the payment information to a server
     // and show a confirmation message to the user
+    if(paymentInfo.cardNumber!==''&& paymentInfo.cvv!==''&&paymentInfo.expirationDate!==''&&paymentInfo.name){
     window.alert('Payment successful! Thank you for your purchase.');
+    let res = await axios.post('removecartitem', {}).catch(e=>console.log(e))
+            console.log(res?.data);
+
+    nav('/')
+    }
+    else{
+      window.alert('Fill all Input.');
+      
+    }
   };
   
 
